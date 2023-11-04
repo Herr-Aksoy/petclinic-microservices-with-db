@@ -1,0 +1,25 @@
+nodes:
+  - address: 34.204.205.162           ##Ip unutma
+    internal_address: 172.31.64.98    ##Burasi privat
+    user: ubuntu
+    role:
+      - controlplane
+      - etcd
+      - worker
+
+# ignore_docker_version: true
+
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h
+
+ssh_key_path: ~/.ssh/ahmet-rancher.pem
+
+# Required for external TLS termination with
+# ingress-nginx v0.22+
+ingress:
+  provider: nginx
+  options:
+    use-forwarded-headers: "true"
