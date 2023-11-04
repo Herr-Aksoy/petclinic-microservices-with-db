@@ -1,6 +1,6 @@
 nodes:
   - address: 34.204.205.162           ##Ip unutma
-    internal_address: 172.31.64.98
+    internal_address: 172.31.64.98    ##Burasi privat
     user: ubuntu
     role:
       - controlplane
