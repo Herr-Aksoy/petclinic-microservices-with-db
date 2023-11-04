@@ -1,5 +1,5 @@
 nodes:
-  - address: 34.204.205.162
+  - address: 34.204.205.162           ##Ip unutma
     internal_address: 172.31.64.98
     user: ubuntu
     role:
