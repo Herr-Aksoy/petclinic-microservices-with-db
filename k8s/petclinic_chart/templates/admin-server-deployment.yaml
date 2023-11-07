@@ -35,7 +35,7 @@ spec:
       - name: init-discovery-server
         image: busybox
         command: ['sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;']
-      imagePullSecrets:
-        - name: regcred
+      imagePullSecrets:     ## Bunun amaci eger sen pravit bir Registry kullaniyorsan  onun bilgilerini
+        - name: regcred     ## bir regcred koymalisin onuda burada belirtmelisin.
       restartPolicy: Always
 status: {}

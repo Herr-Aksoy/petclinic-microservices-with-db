@@ -65,6 +65,9 @@ pipeline {
             steps {
                 echo 'Deploying App on K8s Cluster'
                 sh "rancher login $RANCHER_URL --context $RANCHER_CONTEXT --token $RANCHER_CREDS_USR:$RANCHER_CREDS_PSW"
+                //Rancher login oluyoruz ki komutlari yaaptirabilelim. Iki türlü baaglana biliriz ya Root olarak yada cluster baglanabiliriz.
+                //Burada  context ve token olusturdugumuz clusterdan yaml file girerek aliyoruz.
+                
                 sh "envsubst < k8s/petclinic_chart/values-template.yaml > k8s/petclinic_chart/values.yaml"
                 sh "sed -i s/HELM_VERSION/${BUILD_NUMBER}/ k8s/petclinic_chart/Chart.yaml"
                 sh "rancher kubectl delete secret regcred -n petclinic-prod-ns || true"
@@ -75,6 +78,7 @@ pipeline {
                 """
                 sh "rm -f k8s/config"
                 sh "rancher cluster kf $CLUSTERID > k8s/config"
+                //kf komutu config dosyasinin icegirini aliyor.
                 sh "chmod 400 k8s/config"
                 sh "helm repo add stable-petclinic s3://petclinicdt-helm-charts/stable/myapp/"
                 //s3 ismi farkli yaptiysan degistirmelisin.
